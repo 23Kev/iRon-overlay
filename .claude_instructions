@@ -1,0 +1,39 @@
+This is an iRacing overlay project called iRon using C++ and Direct2D for rendering.
+
+Key Architecture Points:
+- See ARCHITECTURE.md for system overview and patterns
+- See IRACING_TELEMETRY.md for available telemetry data
+- See CODE_PATTERNS.md for implementation examples
+- See FEATURE_SPECS.md for detailed requirements
+- See TODO.md for implementation status
+
+Important Guidelines:
+1. Follow existing code style and patterns exactly
+2. All overlays inherit from Overlay base class
+3. Use g_cfg for all configuration access
+4. Use TextCache for text rendering performance
+5. Check data validity before using telemetry
+6. Handle session transitions gracefully
+7. Make everything configurable via JSON
+8. Test disconnection scenarios
+9. Maintain 60Hz performance (16ms budget)
+10. Use ComPtr for COM objects
+
+When implementing new features:
+- Start with the header file structure
+- Implement required virtual methods
+- Add to main.cpp overlay list
+- Configure hotkeys if needed
+- Follow the patterns in existing overlays
+- Use HRCHECK macro for DirectX calls
+- Prefer float4 for colors (RGBA 0-1)
+
+Common issues to avoid:
+- Memory leaks with COM objects
+- Accessing invalid telemetry data
+- Expensive operations in onUpdate()
+- Hardcoded values instead of config
+- Missing error handling
+- Text recreation every frame
+
+This codebase prioritizes performance and reliability for real-time racing telemetry display.
